@@ -6,10 +6,9 @@ pipeline {
      // ORGANIZATION_NAME
      // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
       
-     ECR_URI = "842970055596.dkr.ecr.ap-south-1.amazonaws.com"
-     ECRCRED = 'ecr:ap-south-1:ECR_LOGIN'
+     ECR_URI = "513514468068.dkr.ecr.us-east-1.amazonaws.com"
      
-     SERVICE_NAME = "fleetman-position-tracker"
+     SERVICE_NAME = "fleetman-position"
      REPOSITORY_TAG="${ECR_URI}/${SERVICE_NAME}:${BUILD_ID}"
    }
 
