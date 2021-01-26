@@ -1,0 +1,37 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: appsnap
+spec:
+  replicas: 10
+  minReadySeconds: 45 # wait for 45 sec before going to deploy next pod
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1  
+      maxSurge: 2        # max number of pods to run for the deployment
+  selector:
+    matchLabels:
+      app: appsnap
+  template:
+    metadata:
+      name: appsnap
+      labels:
+        app: appsnap
+    spec:
+      containers:
+       - name: app
+         image: kaushik0656m21/appsnap:v10
+        
+---
+kind: Service
+apiVersion: v1
+metadata:
+   name: appsnap-svc
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector: 
+    app: appsnap
